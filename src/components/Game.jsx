@@ -9,7 +9,7 @@ function randomNumbers(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-const GameComponent = () => {
+const GameComponent = ( props ) => {
     const inputRef = useRef(null)
 
     // lecture du store de la source de vérité read-only
@@ -146,7 +146,7 @@ const GameComponent = () => {
     }, []);
 
     return (
-        <GameStyled >
+        <GameStyled className={ props.className }>
             <label htmlFor="iterations">Nombre de lancés</label>
             <input ref={inputRef} autoComplete="off" type="number" />
             <button onClick={handleGame}>Lancer</button>
