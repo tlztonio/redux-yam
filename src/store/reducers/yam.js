@@ -2,13 +2,22 @@ import { ADD_MESSAGE, SET_MESSAGE, SET_COUNT, SET_GAME } from '../constants/acti
 
 // SOURCE DE VERITE == structure du store 
 const initialState = {
-    games: [],
-    game: {
-        date: '',
-        time: '',
-        brelans6: 0,
-        iterations: []
-    },
+    games: [
+        {
+            date: '',
+            time: '',
+            brelans6: 0,
+            iterations: [
+                {
+                    total: 0,
+                    de1: 0,
+                    de2: 0,
+                    de3: 0,
+                }
+            ]
+        },
+    ],
+    
 }
 
 const reducer = (state = initialState, action = {}) => {
@@ -17,11 +26,15 @@ const reducer = (state = initialState, action = {}) => {
         case SET_GAME:
             return {
                 ...state,
-                game: action.game
+                games: [ {
+                    date: action.payload.date,
+                    time: action.payload.time,
+                    brelans6: action.payload.brelans6,
+                    iterations: action.payload.iterations,
+                }]
             }
 
         default:
-            console.log(state);
             return state;
     }
 }
