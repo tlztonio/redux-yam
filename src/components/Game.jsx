@@ -164,7 +164,6 @@ const GameComponent = () => {
                     points += 50;
                 } else if ((countArray + "" === [1, 1, 1, 1, 1, 0] + "") || (countArray + "" === [0, 1, 1, 1, 1, 1] + "")) { // grande suite
                     combinaisons.grandeSuites++
-                    console.log(countArray + "")
                     points += 40;
                 } else if (checkPetiteSuite(countArray)) { // petite suite
                     combinaisons.petiteSuites++

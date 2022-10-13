@@ -7,7 +7,7 @@ const ChartComponent = ({ className, data }) => {
     const myRef = useRef(null)
 
     const games = useSelector(state => state.yam.games)
-    const [chartMode, setChartMode] = useState('points'); // ou points
+    const [chartMode, setChartMode] = useState('combinaisons'); // ou points
 
     const handlePoints = () => {
         setChartMode('points');
@@ -85,10 +85,10 @@ const ChartComponent = ({ className, data }) => {
 
     return (
         <>
-            <button onClick={handlePoints}>Points</button>
-            <button onClick={handleCombinaisons}>Combinaisons</button>
             <ChartStyled ref={myRef} id='myChart'>
             </ChartStyled>
+            <button onClick={handlePoints}>Points</button>
+            <button onClick={handleCombinaisons}>Combinaisons</button>
         </>
     );
 };

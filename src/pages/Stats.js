@@ -26,7 +26,6 @@ function Stats() {
                         </ul>
                         <br />
                     </div>
-
                 )
             })}
         </>
