@@ -1,7 +1,10 @@
+import Chart from "../components/Chart";
+
 function Stats() {
-    return(
+    return (
         <>
-        <h1>Stats page</h1>
+            <h1>Stats page</h1>
+            <Chart />
         </>
     );
 }
