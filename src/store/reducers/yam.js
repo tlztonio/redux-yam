@@ -18,20 +18,29 @@ const initialState = {
 
 }
 
-const reducer = (state = initialState, action = {}) => {
+const reducerGames = (state = initialState, action = {}) => {
     switch (action.type) {
-
         case ADD_GAME:
+
+            // nouvelle référence des messages un nouveau tableau 
+            const games = [...state.games]
+
+            // Game
+            const game = action.game.game
+
+            games.push(game);
+
+            // log du store
+            console.log('state', state);
+
             return {
                 ...state,
-                games: [{
-                    brelans: action.payload.brelans,
-                    iterations: action.payload.iterations,
-                }]
+                games
             }
+
         default:
             return state;
     }
 }
 
-export default reducer;
+export default reducerGames;
