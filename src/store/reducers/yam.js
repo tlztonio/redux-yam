@@ -1,4 +1,4 @@
-import { ADD_MESSAGE, SET_MESSAGE, SET_COUNT, SET_GAME } from '../constants/actions';
+import { ADD_GAME } from '../constants/actions';
 
 // SOURCE DE VERITE == structure du store 
 const initialState = {
