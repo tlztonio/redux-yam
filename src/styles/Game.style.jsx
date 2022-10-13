@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const GameStyled = styled.div`
 
-    > .nb-container {
         display: flex;
         flex-direction: column;
         margin-top: 20px;
