@@ -1,23 +1,31 @@
 import { React, useEffect, useRef } from "react";
 import { ChartStyled } from "../styles/Chart.style.jsx";
 import Chart from 'chart.js/auto';
+import { useSelector } from "react-redux";
 
 const ChartComponent = ({ className, data }) => {
     const myRef = useRef(null)
-    let myChart = null;
+
+    const games = useSelector(state => state.yam.games)
+
 
     useEffect(() => {
-        // console.log('test')
-        console.log(myRef.current)
-        // const ctx = document.getElementById('myChart');
+        console.log('etst')
+
+        const brelans = []
+        games.forEach(game => {
+            brelans.push(game.brelans)
+        });
+
+        console.log(brelans)
 
         const myChart = new Chart(myRef.current, {
             type: 'line',
             data: {
                 labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
                 datasets: [{
-                    label: '# of Votes',
-                    data: [12, 19, 3, 5, 2, 3],
+                    label: 'brelans de 6',
+                    data: brelans,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
@@ -37,17 +45,17 @@ const ChartComponent = ({ className, data }) => {
                     borderWidth: 1
                 }]
             },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
+            // options: {
+            //     scales: {
+            //         y: {
+            //             beginAtZero: true
+            //         }
+            //     }
+            // }
         })
-        // console.log(ctx)
+
         return () => myChart.destroy();
-    }, []);
+    }, [games]);
 
     return (
         <ChartStyled ref={myRef} id='myChart'>
