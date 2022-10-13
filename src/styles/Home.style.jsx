@@ -34,11 +34,24 @@ export const HomeStyled = styled.div`
         > input {
             margin-top: 10px;
             padding: 10px;
-            border: 1px solid #7E7E7E;
+            border: 1px solid transparent;
+            background-color: #151515;
             border-radius: 5px;
             transition: all 0.3s ease-in-out;
 
-            &.focus {
+            /* Chrome, Safari, Edge, Opera */
+             > input::-webkit-outer-spin-button,
+             > input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+            }
+
+            /* Firefox */
+            input[type=number] {
+            -moz-appearance: textfield;
+            }
+
+            &:focus {
                 outline: none;
                 border: 1px solid #4490EB;
             }

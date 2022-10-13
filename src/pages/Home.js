@@ -26,7 +26,7 @@ function Home() {
 
             <div className='nb-container'>
                 <label htmlFor="iterations">Nombre d'expériences</label>
-                <input autocomplete="off" type="number" id="iterations" />
+                <input autoComplete="off" type="number" id="iterations" />
                 {error && <p>Le nombre d'expériences doit être un nombre valide. </p>}
                 <button onClick={() => {
 
