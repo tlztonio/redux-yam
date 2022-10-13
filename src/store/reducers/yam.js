@@ -4,7 +4,15 @@ import { ADD_GAME } from '../constants/actions';
 const initialState = {
     games: [
         {
-            brelans: 0,
+            combinaisons: {
+                brelans: 0,
+                carres: 0,
+                fulls: 0,
+                petiteSuites: 0,
+                grandeSuites: 0,
+                yams: 0,
+                chances: 0
+            },
             iterations: [
                 {
                     total: 0,
@@ -12,7 +20,8 @@ const initialState = {
                     de2: 0,
                     de3: 0,
                 }
-            ]
+            ],
+            points: 0
         },
     ],
 
