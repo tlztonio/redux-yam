@@ -10,7 +10,7 @@ function Home() {
         <HomeStyled>
             <h1>Jouez au Yam.</h1>
             <p>Le but du jeu est de faire le plus de points possible en faisant des combinaisons de dés.</p>
-            <Game className={'game-container'} />
+            <Game />
         </HomeStyled>
     );
 }

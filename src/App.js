@@ -2,12 +2,13 @@ import React from 'react';
 import Home from './pages/Home';
 import Stats from './pages/Stats';
 import { Routes, Route, NavLink } from "react-router-dom";
+import {NavBarStyle} from './styles/NavBar.style';
 
 import './App.css';
 
 function Navigation() {
   return (
-    <nav>
+    <NavBarStyle>
       <ul>
         <li>
             <NavLink to="/">Home</NavLink>
@@ -16,7 +17,7 @@ function Navigation() {
             <NavLink to="/stats">Stats</NavLink>
         </li>
       </ul>
-    </nav>
+    </NavBarStyle>
     
   );
 }
