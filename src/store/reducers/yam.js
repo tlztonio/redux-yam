@@ -4,8 +4,6 @@ import { ADD_MESSAGE, SET_MESSAGE, SET_COUNT, SET_GAME } from '../constants/acti
 const initialState = {
     games: [
         {
-            date: '',
-            time: '',
             brelans6: 0,
             iterations: [
                 {
