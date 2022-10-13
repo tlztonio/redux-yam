@@ -47,10 +47,6 @@ const ChartComponent = ({ className, data }) => {
 
         const combinaisonsData = Object.values(totalCombinaisons)
 
-
-        console.log(combinaisonsData)
-        console.log(pointsData)
-
         const myChart = new Chart(myRef.current, {
             type: 'line',
             data: {
