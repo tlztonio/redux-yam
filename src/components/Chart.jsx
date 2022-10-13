@@ -19,15 +19,14 @@ const ChartComponent = ({ className, data }) => {
 
     useEffect(() => {
 
-        const combinaisonsLabels = ['brelan', 'carre', 'full', 'petiteSuite', 'grandeSuite', 'yams', 'chance']
+        const combinaisonsLabels = ['brelan', 'carre', 'full', 'petiteSuite', 'grandeSuite', 'yams']
         const totalCombinaisons = {
             brelans: 0,
             carres: 0,
             fulls: 0,
             petiteSuites: 0,
             grandeSuites: 0,
-            yamss: 0,
-            chances: 0
+            yams: 0
         }
         const pointsLabels = []
         const pointsData = []
@@ -39,7 +38,6 @@ const ChartComponent = ({ className, data }) => {
             totalCombinaisons.petiteSuites += game.combinaisons.petiteSuites
             totalCombinaisons.grandeSuites += game.combinaisons.grandeSuites
             totalCombinaisons.yams += game.combinaisons.yams
-            totalCombinaisons.chances += game.combinaisons.chances
 
             pointsLabels.push('game ' + index)
             pointsData.push(game.points)
@@ -52,7 +50,7 @@ const ChartComponent = ({ className, data }) => {
             data: {
                 labels: chartMode === 'combinaisons' ? combinaisonsLabels : pointsLabels,
                 datasets: [{
-                    label: 'brelans de 6',
+                    label: 'nombre',
                     data: chartMode === 'combinaisons' ? combinaisonsData : pointsData,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',

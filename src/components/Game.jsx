@@ -9,6 +9,24 @@ function randomNumbers(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
+function checkPetiteSuite(arrayCount) {
+    let nbSuite = 0;
+    let sommeSuite = 0;
+    for (let k = arrayCount.length - 1; k >= 0; k--) {
+        if (arrayCount[k] > 0) {
+            nbSuite++;
+            sommeSuite += k + 1;
+            if (nbSuite == 4) {
+                return true;
+            }
+        } else { // suite brisée
+            nbSuite = 0;
+            sommeSuite = 0;
+        }
+    }
+    return false;
+}
+
 const GameComponent = () => {
     const inputRef = useRef(null)
 
@@ -58,13 +76,6 @@ const GameComponent = () => {
         };
 
         const iterations = [];
-        // const iterationModel = {
-        //     de1: 0,
-        //     de2: 0,
-        //     de3: 0,
-        //     de4: 0,
-        //     de5: 0,
-        // };
 
 
         if (iterationsCount) {
@@ -113,10 +124,11 @@ const GameComponent = () => {
                 } else if (countArray.includes(5)) { // yams
                     combinaisons.yams++
                     points += 50;
-                } else if (countArray === ([1, 1, 1, 1, 1, 0] || countArray === [0, 1, 1, 1, 1, 1])) { // grande suite
+                } else if ((countArray + "" === [1, 1, 1, 1, 1, 0] + "") || (countArray + "" === [0, 1, 1, 1, 1, 1] + "")) { // grande suite
                     combinaisons.grandeSuites++
+                    console.log(countArray + "")
                     points += 40;
-                } else if (countArray === ([1, 1, 1, 1, 0, 0] || countArray === [0, 1, 1, 1, 1, 0] || countArray === [0, 0, 1, 1, 1, 1])) { // petite suite
+                } else if (checkPetiteSuite(countArray)) { // petite suite
                     combinaisons.petiteSuites++
                     points += 25;
                 } else { // chance
