@@ -14,6 +14,7 @@ function Stats() {
                     <div key={index}>
                         <p>Game {index + 1}</p>
                         <p>Points : {game.points}</p>
+                        <p>Iterations : {game.iterations.length}</p>
                         <ul>
                             <li>brelans : {game.combinaisons.brelans}</li>
                             <li>carres : {game.combinaisons.carres}</li>
