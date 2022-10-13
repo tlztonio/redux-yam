@@ -1,5 +1,5 @@
 import { React, useEffect, useRef, useState } from "react";
-import { ChartStyled } from "../styles/Chart.style.jsx";
+import { ChartStyled, ButtonStyled, ButtonContainer } from "../styles/Chart.style.jsx";
 import Chart from 'chart.js/auto';
 import { useSelector } from "react-redux";
 
@@ -71,13 +71,6 @@ const ChartComponent = ({ className, data }) => {
                     borderWidth: 1
                 }]
             },
-            // options: {
-            //     scales: {
-            //         y: {
-            //             beginAtZero: true
-            //         }
-            //     }
-            // }
         })
 
         return () => myChart.destroy();
@@ -87,8 +80,10 @@ const ChartComponent = ({ className, data }) => {
         <>
             <ChartStyled ref={myRef} id='myChart'>
             </ChartStyled>
-            <button onClick={handlePoints}>Points</button>
-            <button onClick={handleCombinaisons}>Combinaisons</button>
+            <ButtonContainer>
+                <ButtonStyled onClick={handlePoints}>Points</ButtonStyled>
+                <ButtonStyled onClick={handleCombinaisons}>Combinaisons</ButtonStyled>
+            </ButtonContainer>
         </>
     );
 };

@@ -7,7 +7,6 @@ function Stats() {
 
     return (
         <>
-            <h1>Stats page</h1>
             <Chart />
             {games.map((game, index) => {
                 return (
