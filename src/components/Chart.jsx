@@ -85,10 +85,10 @@ const ChartComponent = ({ className, data }) => {
 
     return (
         <>
-            <button onClick={handlePoints}>Points</button>
-            <button onClick={handleCombinaisons}>Combinaisons</button>
             <ChartStyled ref={myRef} id='myChart'>
             </ChartStyled>
+            <button onClick={handlePoints}>Points</button>
+            <button onClick={handleCombinaisons}>Combinaisons</button>
         </>
     );
 };
