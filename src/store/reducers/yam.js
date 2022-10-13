@@ -4,7 +4,7 @@ import { ADD_GAME } from '../constants/actions';
 const initialState = {
     games: [
         {
-            brelans6: 0,
+            brelans: 0,
             iterations: [
                 {
                     total: 0,
@@ -25,11 +25,10 @@ const reducer = (state = initialState, action = {}) => {
             return {
                 ...state,
                 games: [{
-                    brelans6: action.payload.brelans6,
+                    brelans: action.payload.brelans,
                     iterations: action.payload.iterations,
                 }]
             }
-
         default:
             return state;
     }
