@@ -1,4 +1,4 @@
-import { React, useEffect, useRef } from "react";
+import { React, useEffect, useRef, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { add_game } from '../store/actions/actions-types';
 import { GameStyled } from '../styles/Game.style';
@@ -28,7 +28,8 @@ function checkPetiteSuite(arrayCount) {
 }
 
 const GameComponent = () => {
-    const inputRef = useRef(null)
+    const inputRef = useRef(null);
+    const [gameState, setGameState] = useState(null);
 
     // lecture du store de la source de vérité read-only
     const { games } = useSelector(state => state);
@@ -36,11 +37,35 @@ const GameComponent = () => {
     // actions dispatch dans le reducer => newState 
     const dispatch = useDispatch();
 
+    const handleInputKeyDown = (e) => {
+
+        // Empêche la saisie de caractères autres que des chiffres
+        if (isNaN(e.key) && e.key !== 'Backspace' && e.key !== 'Enter') {
+            e.preventDefault();
+        }
+        else {
+
+            // Active l'état du bouton
+            setGameState('active');
+
+            // Si la touche entrée est pressée et que le champ n'est pas vide
+            console.log(e.key);
+            if (e.key === 'Enter' && inputRef.current.value !== '') {
+                console.log('lancer une partie');
+                // Lance une nouvelle game
+                handleGame();
+            }
+        }
+
+        if (e.key === 'Backspace' && inputRef.current.value.length <= 1) {
+            setGameState('empty');
+        }
+    }
+
     const handleGame = () => {
 
         // Déclaration items
         const iterationsCount = inputRef.current.value;
-        console.log(iterationsCount);
 
         // Structure de données
         const gameModel = {
@@ -78,7 +103,20 @@ const GameComponent = () => {
         const iterations = [];
 
 
-        if (iterationsCount) {
+        if (iterationsCount 
+            // Vérifier que le nombre d'itérations est un nombre entier
+            && Number.isInteger(Number(iterationsCount))
+            // Vérifier que le nombre d'itérations est supérieur à 0
+            && inputRef.current.value > 0 
+            // Vérifier que le nombre d'itérations est inférieur à 10000
+            && inputRef.current.value <= 10000 ) {
+
+            // Reset du gameState
+            setGameState('clicked');
+            setTimeout(() => {
+                setGameState('empty');
+                inputRef.current.value = '';
+            }, 3000);
 
             let points = 0;
 
@@ -148,8 +186,10 @@ const GameComponent = () => {
 
             dispatch(add_game({ type: 'ADD_GAME', game }));
 
-            // log du store
-            console.log(game);
+            inputRef.current.value = '';
+
+        } else {
+            setGameState('error');
         }
     };
 
@@ -158,10 +198,12 @@ const GameComponent = () => {
     }, []);
 
     return (
-        <GameStyled >
-            <label htmlFor="iterations">Nombre de lancés</label>
-            <input ref={inputRef} autoComplete="off" type="number" />
-            <button onClick={handleGame}>Lancer</button>
+        <GameStyled>
+            <label htmlFor="iterations">Entrez le nombre d'itérations souhaitées :</label>
+            <input ref={inputRef} autoComplete="off" type="number" onKeyDown={handleInputKeyDown} />
+            <div className={`button-wrapper ${gameState ? gameState : 'empty'}`}>
+                <button onClick={handleGame}><span>Jouer</span></button>
+            </div>
         </GameStyled>
     );
 };

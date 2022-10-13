@@ -11,10 +11,10 @@ function Navigation() {
     <NavBarStyle>
       <ul>
         <li>
-            <NavLink to="/">Home</NavLink>
+            <NavLink to="/">Jouer</NavLink>
         </li>
         <li>
-            <NavLink to="/stats">Stats</NavLink>
+            <NavLink to="/stats">Statistiques</NavLink>
         </li>
       </ul>
     </NavBarStyle>
