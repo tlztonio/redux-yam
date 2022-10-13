@@ -12,9 +12,8 @@ function Stats() {
             {games.map((game, index) => {
                 return (
                     <div key={index}>
-                        <p>Game : {index + 1}</p>
+                        <p>Game {index + 1}</p>
                         <p>Points : {game.points}</p>
-                        <br />
                         <ul>
                             <li>brelans : {game.combinaisons.brelans}</li>
                             <li>carres : {game.combinaisons.carres}</li>
@@ -24,7 +23,9 @@ function Stats() {
                             <li>yams : {game.combinaisons.yams}</li>
                             <li>chances : {game.combinaisons.chances}</li>
                         </ul>
+                        <br />
                     </div>
+
                 )
             })}
         </>

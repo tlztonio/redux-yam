@@ -1,4 +1,4 @@
-import { React, useEffect, useRef } from "react";
+import { React, useEffect, useRef, useState } from "react";
 import { ChartStyled } from "../styles/Chart.style.jsx";
 import Chart from 'chart.js/auto';
 import { useSelector } from "react-redux";
@@ -7,29 +7,57 @@ const ChartComponent = ({ className, data }) => {
     const myRef = useRef(null)
 
     const games = useSelector(state => state.yam.games)
+    const [chartMode, setChartMode] = useState('points'); // ou points
 
+    const handlePoints = () => {
+        setChartMode('points');
+    }
+
+    const handleCombinaisons = () => {
+        setChartMode('combinaisons');
+    }
 
     useEffect(() => {
-        console.log('etst')
 
-        const brelans = []
-        const brelanLabels = []
-        let i
-        games.forEach(game => {
-            brelans.push(game.brelans)
-            i++
-            brelanLabels.push(game.iterations.length + ' iterations')
+        const combinaisonsLabels = ['brelan', 'carre', 'full', 'petiteSuite', 'grandeSuite', 'yams', 'chance']
+        const totalCombinaisons = {
+            brelans: 0,
+            carres: 0,
+            fulls: 0,
+            petiteSuites: 0,
+            grandeSuites: 0,
+            yamss: 0,
+            chances: 0
+        }
+        const pointsLabels = []
+        const pointsData = []
+
+        games.forEach((game, index) => {
+            totalCombinaisons.brelans += game.combinaisons.brelans
+            totalCombinaisons.carres += game.combinaisons.carres
+            totalCombinaisons.fulls += game.combinaisons.fulls
+            totalCombinaisons.petiteSuites += game.combinaisons.petiteSuites
+            totalCombinaisons.grandeSuites += game.combinaisons.grandeSuites
+            totalCombinaisons.yams += game.combinaisons.yams
+            totalCombinaisons.chances += game.combinaisons.chances
+
+            pointsLabels.push('game ' + index)
+            pointsData.push(game.points)
         });
 
-        console.log(brelans)
+        const combinaisonsData = Object.values(totalCombinaisons)
+
+
+        console.log(combinaisonsData)
+        console.log(pointsData)
 
         const myChart = new Chart(myRef.current, {
             type: 'line',
             data: {
-                labels: brelanLabels,
+                labels: chartMode === 'combinaisons' ? combinaisonsLabels : pointsLabels,
                 datasets: [{
                     label: 'brelans de 6',
-                    data: brelans,
+                    data: chartMode === 'combinaisons' ? combinaisonsData : pointsData,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
@@ -59,11 +87,15 @@ const ChartComponent = ({ className, data }) => {
         })
 
         return () => myChart.destroy();
-    }, [games]);
+    }, [games, chartMode]);
 
     return (
-        <ChartStyled ref={myRef} id='myChart'>
-        </ChartStyled>
+        <>
+            <button onClick={handlePoints}>Points</button>
+            <button onClick={handleCombinaisons}>Combinaisons</button>
+            <ChartStyled ref={myRef} id='myChart'>
+            </ChartStyled>
+        </>
     );
 };
 
