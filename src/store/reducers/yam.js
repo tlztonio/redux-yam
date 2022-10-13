@@ -15,18 +15,16 @@ const initialState = {
             ]
         },
     ],
-    
+
 }
 
 const reducer = (state = initialState, action = {}) => {
     switch (action.type) {
 
-        case SET_GAME:
+        case ADD_GAME:
             return {
                 ...state,
-                games: [ {
-                    date: action.payload.date,
-                    time: action.payload.time,
+                games: [{
                     brelans6: action.payload.brelans6,
                     iterations: action.payload.iterations,
                 }]
