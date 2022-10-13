@@ -13,8 +13,12 @@ const ChartComponent = ({ className, data }) => {
         console.log('etst')
 
         const brelans = []
+        const brelanLabels = []
+        let i
         games.forEach(game => {
             brelans.push(game.brelans)
+            i++
+            brelanLabels.push(game.iterations.length + ' iterations')
         });
 
         console.log(brelans)
@@ -22,7 +26,7 @@ const ChartComponent = ({ className, data }) => {
         const myChart = new Chart(myRef.current, {
             type: 'line',
             data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                labels: brelanLabels,
                 datasets: [{
                     label: 'brelans de 6',
                     data: brelans,
