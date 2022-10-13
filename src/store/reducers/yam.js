@@ -15,16 +15,16 @@ const initialState = {
             },
             iterations: [
                 {
-                    total: 0,
                     de1: 0,
                     de2: 0,
                     de3: 0,
+                    de4: 0,
+                    de5: 0,
                 }
             ],
             points: 0
         },
     ],
-
 }
 
 const reducerGames = (state = initialState, action = {}) => {
@@ -40,7 +40,7 @@ const reducerGames = (state = initialState, action = {}) => {
             games.push(game);
 
             // log du store
-            console.log('state', state);
+            // console.log('state', state);
 
             return {
                 ...state,
