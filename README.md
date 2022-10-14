@@ -7,6 +7,8 @@ Voici les combinaisons du jeu de yam's que nous avons détecté sur le site et l
 
 ![combinaisons yam's](https://user-images.githubusercontent.com/72558246/195797054-4b06c0cf-50fd-480a-af96-baa2402b1d2d.png)
 
+lien : https://yams-redux.netlify.app
+
 ## Fonctionnalités
 
 - [x] Page d'accueil
