@@ -3,25 +3,20 @@ import { useSelector, useDispatch } from 'react-redux';
 import { add_game } from '../store/actions/actions-types';
 import { GameStyled } from '../styles/Game.style';
 
-const BRELAN_NB = 6;
-
 function randomNumbers(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
 function checkPetiteSuite(arrayCount) {
     let nbSuite = 0;
-    let sommeSuite = 0;
     for (let k = arrayCount.length - 1; k >= 0; k--) {
         if (arrayCount[k] > 0) {
             nbSuite++;
-            sommeSuite += k + 1;
-            if (nbSuite == 4) {
+            if (nbSuite === 4) { // suite de 4
                 return true;
             }
         } else { // suite brisée
             nbSuite = 0;
-            sommeSuite = 0;
         }
     }
     return false;
@@ -30,9 +25,6 @@ function checkPetiteSuite(arrayCount) {
 const GameComponent = () => {
     const inputRef = useRef(null);
     const [gameState, setGameState] = useState(null);
-
-    // lecture du store de la source de vérité read-only
-    const { games } = useSelector(state => state);
 
     // actions dispatch dans le reducer => newState 
     const dispatch = useDispatch();
@@ -103,13 +95,14 @@ const GameComponent = () => {
         const iterations = [];
 
 
-        if (iterationsCount 
+        if (iterationsCount
             // Vérifier que le nombre d'itérations est un nombre entier
             && Number.isInteger(Number(iterationsCount))
             // Vérifier que le nombre d'itérations est supérieur à 0
-            && inputRef.current.value > 0 
+            && inputRef.current.value > 0
             // Vérifier que le nombre d'itérations est inférieur à 10000
-            && inputRef.current.value <= 10000 ) {
+            // && inputRef.current.value <= 10000) {
+        ) {
 
             // Reset du gameState
             setGameState('clicked');
@@ -140,9 +133,10 @@ const GameComponent = () => {
 
                 const dicesArray = [dice1, dice2, dice3, dice4, dice5];
                 const countArray = [0, 0, 0, 0, 0, 0]; // 1, 2, 3, 4, 5, 6
+                // ce tableau compte le nombre de fois que chaque chiffre est présent dasn la combinaisons des dés
 
                 for (let j = 0; j < dicesArray.length; j++) {
-                    const indice = dicesArray[j] - 1;
+                    const indice = dicesArray[j] - 1; // la position du chiffre du dé dans le tableau countArray
                     countArray[indice] += 1;
                 }
 
