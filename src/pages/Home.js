@@ -1,6 +1,3 @@
-import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { add_game } from '../store/actions/actions-types';
 import { HomeStyled } from '../styles/Home.style';
 import Game from '../components/Game';
 

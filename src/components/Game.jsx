@@ -1,5 +1,5 @@
 import { React, useEffect, useRef, useState } from "react";
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { add_game } from '../store/actions/actions-types';
 import { GameStyled } from '../styles/Game.style';
 
