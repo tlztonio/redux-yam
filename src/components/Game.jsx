@@ -109,7 +109,7 @@ const GameComponent = () => {
             setTimeout(() => {
                 setGameState('empty');
                 inputRef.current.value = '';
-            }, 3000);
+            }, 1000);
 
             let points = 0;
 

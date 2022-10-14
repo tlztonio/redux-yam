@@ -16,6 +16,7 @@ export const ButtonStyled = styled.button`
     background-color: #1F1F21;
     padding: 0.5em;
     margin: 0.5em;
+    margin-top: 2em;
 
   &:hover {
     background-color: #151515;
